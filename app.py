@@ -2,6 +2,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
 from shiny.express import ui, input, render
+import seaborn as sns
 
 
 # Add page options for the overall app.
@@ -35,3 +36,11 @@ def draw_histogram():
     # - The second argument specifies the number of bins, dynamically set by the input slider's current value.
     # - The 'density' parameter, when True, normalizes the histogram so that the total area under the histogram equals 1.
     plt.hist(random_data_array, input.selected_number_of_bins(), density=True, color = 'purple')
+
+# Define the scatterplat function to create a scatterplot
+@render.plot(alt="A scatterplot")
+def scatterplot():
+    np.random.seed(30)
+    x = np.random.normal(size=100)
+    y = np.random.normal(size=100)
+    sns.scatterplot(x=x, y=y, color='purple')
